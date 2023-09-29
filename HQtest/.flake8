@@ -1,0 +1,9 @@
+[flake8]
+extend-ignore = 'no such service: sh'
+exclude =
+    docker-compose.yml,
+    migrations,
+    __pycache__,
+    manage.py,
+    settings.py,
+    Dockerfile
