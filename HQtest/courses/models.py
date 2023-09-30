@@ -5,7 +5,8 @@ from django.db import models
 class Product(models.Model):
     """Product object."""
 
-    owner = models.ForeignKey(User, null=False, blank=False, on_delete=models.CASCADE)
+    owner = models.ForeignKey(User, null=False, blank=False,
+                              on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
 
     def __str__(self):
@@ -38,7 +39,8 @@ class ProductAccess(models.Model):
         verbose_name_plural = "accesses"
 
     def save(self, *args, **kwargs):
-        existing_entry = ProductAccess.objects.select_related('Product').filter(user=self.user, product=self.product).exists()
+        existing_entry = ProductAccess.objects.select_related(
+            'Product').filter(user=self.user, product=self.product).exists()
         if not existing_entry: #Prevent duplicate entries.
             super().save(*args, **kwargs)
 
